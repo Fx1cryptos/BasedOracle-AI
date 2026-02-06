@@ -1,1 +1,0 @@
-{\n  "name": "basedoracle-ai",\n  "version": "1.0.0",\n  "description": "BasedOracle AI Node.js environment setup",\n  "main": "index.js",\n  "scripts": {\n    "start": "node index.js",\n    "setup": "node setup.js"\n  },\n  "keywords": ["AI", "Node.js", "Ethereum", "Base"],\n  "author": "Fx1cryptos",\n  "license": "MIT",\n  "dependencies": {\n    "dotenv": "^16.0.0"\n  }\n}
