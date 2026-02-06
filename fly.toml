@@ -1,26 +1,23 @@
-# fly.toml — BasedOracle AI configuration
+# fly.toml app configuration file generated for basedoracle-ai on 2026-02-06T23:45:40Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "basedoracle-ai"    # Your Fly app name
-primary_region = "ams"     # Change to nearest region if you want
+app = 'basedoracle-ai'
+primary_region = 'iad'
 
 [build]
-  # Use Dockerfile in root
-  dockerfile = "Dockerfile"
 
-[env]
-  MAINNET_API = "8004_pMeWXGgmjiK4_286Aniyd5OZv7VMsaxa_9ebd4857"
-  PINECONE_API = "pcsk_5vDxWV_MSS3HpZaYq81VBbZKvFNkw8bnZ7bRg1XRtUXjNdTApHHxi8ssaLTXMPWetLHGgD"
-  BANKR_API = "bk_GRFP7PWFYQCF52J7C87ZH8NAPW7S6D5G"
-  COINBASE_API = "1b95ce2a-8da5-48b2-80c6-ff7aad5c556d"
-  TALENT_API = "talent_038ad064ab195c81759737de992e44ee1f90df6e8def5b1da54a3c6df233"
-  RENDER_API = "rnd_2XifIwLIwqxmyBzHD4byewfRc21o"
-  NEYNAY_API = "6C7D868E-6AEA-4F30-9E4B-F4010445DC18"
-  RUNWARE_API = "LMDSKeoGIzXDejUrj87kWHv07mE2UPbI"
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
-[deploy]
-  # Auto-deploy your Dockerfile
-  release_command = "echo 'Releasing BasedOracle AI...'"
-
-[experimental]
-  allowed_public_ports = [8080]
-  auto_rollback = true
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024
