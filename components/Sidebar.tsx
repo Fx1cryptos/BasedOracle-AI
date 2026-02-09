@@ -1,0 +1,112 @@
+'use client'
+
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import {
+  BarChart3,
+  Wallet,
+  Gem,
+  DollarSign,
+  Radio,
+  FileText,
+  Mic,
+  ExternalLink,
+  ChevronDown,
+  Menu,
+  X,
+} from 'lucide-react'
+import Link from 'next/link'
+
+const navigationItems = [
+  { icon: BarChart3, label: 'Dashboard', prompt: 'Show me a Base ecosystem overview' },
+  { icon: BarChart3, label: 'Onchain Analytics', prompt: 'Analyze Base blockchain activity' },
+  { icon: Wallet, label: 'Wallet Intelligence', prompt: 'Analyze my wallet' },
+  { icon: Gem, label: 'Unclaimed Airdrops', prompt: 'Check unclaimed airdrops' },
+  { icon: Gem, label: 'NFTs & Creator Coins', prompt: 'Show NFT trends on Base' },
+  { icon: Radio, label: 'Social Feeds', prompt: 'Show latest Base community posts' },
+  { icon: DollarSign, label: 'Token Info', prompt: 'Tell me about $BASEDORACLE' },
+  { icon: FileText, label: 'Docs & Links', prompt: 'Show documentation links' },
+  { icon: Mic, label: 'Voice Mode', prompt: 'Enable voice chat' },
+]
+
+interface SidebarProps {
+  onNavigate?: (prompt: string) => void
+}
+
+export function Sidebar({ onNavigate }: SidebarProps) {
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
+
+  const handleNavigate = (prompt: string) => {
+    onNavigate?.(prompt)
+    setIsMobileOpen(false)
+  }
+
+  return (
+    <>
+      {/* Mobile Toggle Button */}
+      <button
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white border border-gray-200 hover:bg-gray-50"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+      >
+        {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/* Overlay */}
+      {isMobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-20 lg:hidden"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col overflow-y-auto z-30 transform transition-transform lg:transform-none ${
+          isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
+      >
+        {/* Logo Area */}
+        <div className="p-6 border-b border-gray-200">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <span className="text-white font-bold text-sm">BO</span>
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-gray-900">Base Oracle</h1>
+              <p className="text-xs text-gray-500">Powered by Base</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Items */}
+        <div className="flex-1 p-4 space-y-2">
+          {navigationItems.map((item) => (
+            <Button
+              key={item.label}
+              variant="ghost"
+              className="w-full justify-start gap-3 text-gray-700 hover:bg-primary/10 hover:text-primary"
+              onClick={() => handleNavigate(item.prompt)}
+            >
+              <item.icon className="w-4 h-4" />
+              <span>{item.label}</span>
+            </Button>
+          ))}
+        </div>
+
+        {/* Launch App Button */}
+        <div className="p-4 border-t border-gray-200">
+          <Link
+            href="https://base-oracle--fx1digital.replit.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="w-full gap-2 bg-gradient-to-r from-primary to-accent hover:shadow-lg">
+              <ExternalLink className="w-4 h-4" />
+              Launch App
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </>
+  )
+}
