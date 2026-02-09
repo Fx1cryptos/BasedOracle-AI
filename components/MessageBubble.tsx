@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import Markdown from 'react-markdown';
 import { cn } from '@/lib/utils';
 
 interface MessageBubbleProps {
@@ -42,7 +42,7 @@ export function MessageBubble({
           </div>
         ) : (
           <div className="prose prose-sm dark:prose-invert max-w-none">
-            <ReactMarkdown
+            <Markdown
               components={{
                 p: ({ node, ...props }) => <p className="mb-2" {...props} />,
                 a: ({ node, ...props }) => (
@@ -62,7 +62,7 @@ export function MessageBubble({
               }}
             >
               {content}
-            </ReactMarkdown>
+            </Markdown>
           </div>
         )}
         {timestamp && (
