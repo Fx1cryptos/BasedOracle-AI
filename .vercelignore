@@ -1,0 +1,11 @@
+backend
+backend/**
+*.py
+pyproject.toml
+poetry.lock
+Makefile
+docker-compose.yml
+Dockerfile
+.github
+.git
+README.md

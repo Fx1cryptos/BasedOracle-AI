@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 50% 3%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 50% 3%;
+    --primary: 241 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 163% 51%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 17% 48%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 241 100% 33%;
+  }
+
+  .dark {
+    --background: 241 100% 8%;
+    --foreground: 0 0% 100%;
+    --card: 241 100% 12%;
+    --card-foreground: 0 0% 100%;
+    --primary: 241 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 163% 51%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 13% 67%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 241 100% 33%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Base Oracle Custom Styles */
+@layer utilities {
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary via-primary to-accent;
+  }
+
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-slate-900/80 backdrop-blur-md border border-slate-800/50;
+  }
+
+  .smooth-shadow {
+    @apply shadow-lg shadow-primary/10;
+  }
+}
